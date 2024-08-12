@@ -5,7 +5,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const cors = require('cors');
 
 const corsOptions = {
     origin: 'https://tuf-frontend-wine.vercel.app', 
@@ -26,6 +25,7 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if(err){
         console.log("Error connecting to the database: ", err);
+        process.exit(1);
     }else{
         console.log("Connected to the database");
     }
