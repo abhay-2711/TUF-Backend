@@ -5,7 +5,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(cors());
+const cors = require('cors');
+
+const corsOptions = {
+    origin: 'https://tuf-frontend-wine.vercel.app', 
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
