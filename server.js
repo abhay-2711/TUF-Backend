@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
@@ -23,9 +24,11 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     ssl: {
-        ca: fs.readFileSync('./DigiCertGlobalRootCA.crt.pem'),
+        ca : fs.readFileSync(path.resolve(__dirname, 'DigiCertGlobalRootCA.crt.pem')),
     }
 });
+
+console.log("Current directory:", __dirname);
 
 db.connect((err) => {
     if(err){
