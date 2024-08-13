@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    port: process.env.DB_PORT || 3306,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
@@ -28,8 +28,6 @@ const db = mysql.createConnection({
     },
     connectTimeout: 10000,
 });
-
-console.log("Current directory:", __dirname);
 
 db.connect((err) => {
     if(err){
@@ -82,7 +80,7 @@ app.post('/api/banner/toggle-visibility', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
