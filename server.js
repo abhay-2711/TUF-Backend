@@ -25,7 +25,8 @@ const db = mysql.createConnection({
     database: process.env.DB_DATABASE,
     ssl: {
         ca : fs.readFileSync(path.resolve(__dirname, 'DigiCertGlobalRootCA.crt.pem')),
-    }
+    },
+    connectTimeout: 10000,
 });
 
 console.log("Current directory:", __dirname);
